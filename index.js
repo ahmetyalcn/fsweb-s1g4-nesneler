@@ -82,8 +82,12 @@ const degerlendirmeler = [
 	Yukarıdaki degerlendirmeler dizisini(array) kullanarak:
 	1. Sadece Ahmet'in geribildirimini konsolda görüntüleyin - fonksiyona gerek yok
 */
+for(let i=0; i< degerlendirmeler.length; i++){
+	if(degerlendirmeler[i].isim=="Ahmet"){
+		console.log(degerlendirmeler[i]);
+	}
+}
 
-console.log(degerlendirmeler[5].geribildirim)
 
 /*  Görev 4 (ototest yok):  
 	Reyna'nın geribildirimi girilmemiş! Aşağıdakileri uygulayın: (fonksiyona gerek yok) 
@@ -157,7 +161,7 @@ function SonDegerlendirmeyiAl(degerlendirmeler) {
 } 
 
 
-SonDegerlendirmeyiAl(degerlendirmeler)
+
 /////////////// BONUS  GÖRVLER////////////////////
 
 /**  BONUS 1:  
@@ -174,15 +178,15 @@ SonDegerlendirmeyiAl(degerlendirmeler)
 	]
 */
 
+
 function PuanaGoreDegerlendirmeAl(degerlendirmeler, arananPuan) {
-
+	let filtrelenmis = [];
     for (let i = 0; i< degerlendirmeler.length; i++){
-		if( degerlendirmeler[i].puan >= arananPuan &&  degerlendirmeler[i].puan <= arananPuan+0.9){
-			console.log(degerlendirmeler[i]);
-			
+		if( Math.floor(degerlendirmeler[i].puan) == arananPuan){
+			filtrelenmis = [...filtrelenmis, degerlendirmeler[i]];
 		}
-
 	}
+	return filtrelenmis;
 }
 
 
@@ -197,13 +201,13 @@ function UzunDegerlendirmeleriAl(degerlendirmeler) {
 	let yeniDizi = [];
     for(let i = 0; i < degerlendirmeler.length; i++){
 		let kelimeSayisi = degerlendirmeler[i].geribildirim.split(" ").length;
-		if (kelimeSayisi >= 10){
+		if (kelimeSayisi >= 15){
 		//	yeniDizi.push(degerlendirmeler[i]);
 			yeniDizi = [...yeniDizi, degerlendirmeler[i]];
 			
 		}
 	}
-	console.log(yeniDizi);
+	return (yeniDizi)
 }
 
 
@@ -229,7 +233,8 @@ function arabaYapici(kmSayaci){
     const araba = {
 		kmSayaci,
 		surus : function (km){
-			return km+this.kmSayaci;
+			this.kmSayaci += km;
+			return this.kmSayaci;
 		}
 	}
     return araba;
